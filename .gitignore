@@ -1,0 +1,5 @@
+# Virtual Environment
+langchain-vector_db/
+
+# Environment Variables
+.env
