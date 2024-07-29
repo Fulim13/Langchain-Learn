@@ -4,4 +4,4 @@ langchain-vector_db/
 # Environment Variables
 .env
 
-data/docs/youtube
+02_LangChain_Chat_with_Your_Data/data/docs/youtube/
