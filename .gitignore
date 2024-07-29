@@ -3,3 +3,5 @@ langchain-vector_db/
 
 # Environment Variables
 .env
+
+data/docs/youtube
