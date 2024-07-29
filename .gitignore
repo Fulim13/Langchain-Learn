@@ -5,3 +5,4 @@ langchain-vector_db/
 .env
 
 02_LangChain_Chat_with_Your_Data/data/docs/youtube/
+02_LangChain_Chat_with_Your_Data/data/docs/chroma/
