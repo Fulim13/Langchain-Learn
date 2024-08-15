@@ -111,8 +111,6 @@ if uploaded_file is not None:
         | StrOutputParser()
     )
 
-    result = "No Result yet"
-
     with st.form("my_form"):
         question = st.text_input("Input your question about the documents")
         temperature = st.number_input(
@@ -130,4 +128,4 @@ if uploaded_file is not None:
         ).invoke(question)
         st.form_submit_button("Submit")
 
-    st.write(result)
+        st.write(result)
