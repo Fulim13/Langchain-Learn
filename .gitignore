@@ -6,3 +6,6 @@ langchain-vector_db/
 
 02_LangChain_Chat_with_Your_Data/data/docs/youtube/
 02_LangChain_Chat_with_Your_Data/data/docs/chroma/
+
+projects/environmental_vector_store_path.faiss/
+projects/polictic_vector_store_path.faiss/
