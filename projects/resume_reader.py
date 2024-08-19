@@ -43,6 +43,8 @@ class WorkExperience(Experience):
 class Resume(BaseModel):
     first_name: str = Field(description="The first name of the individual.")
     last_name: str = Field(description="The last name of the individual.")
+    github_url: Optional[str] = Field(
+        description="The URL to the individual's Github profile.")
     linkedin_url: Optional[str] = Field(
         description="The URL to the individual's LinkedIn profile.")
     email_address: Optional[str] = Field(
@@ -73,63 +75,76 @@ extraction_chain = prompt | extraction_model | JsonOutputFunctionsParser()
 uploaded_files = st.file_uploader(
     "Choose a txt file", type="pdf", accept_multiple_files=True)
 
-
-if uploaded_files:
-    extracted_data = []
-
-    for uploaded_file in uploaded_files:
-        with open(uploaded_file.name, mode='wb') as w:
-            w.write(uploaded_file.getvalue())
-
-        if uploaded_file.type == "application/pdf":
-            loader = PyPDFLoader(uploaded_file.name)
-            pages = loader.load_and_split()
-
-        # Clean up (delete) the file after processing
-        if os.path.exists(uploaded_file.name):
-            os.remove(uploaded_file.name)
-            print(f"File {uploaded_file.name} has bee deleted")
-
-        response = extraction_chain.invoke({"input": pages[0]})
-
-        # print(response)
-
-        # Append the extracted information to a JSON file
-        output_file = "data/extracted_resume.json"
-
-        # Check if the JSON file exists and load its content if it does
-        try:
-            with open(output_file, 'r') as file:
-                existing_data = json.load(file)
-        except FileNotFoundError:
-            existing_data = []
-
-        # Append the new data to the existing content
-        existing_data.append(response)
-
-        # Write the updated content back to the JSON file
-        with open(output_file, 'w') as file:
-            json.dump(existing_data, file, indent=4)
-
-        print(f"Resume data appended to {output_file}")
-
 output_file = "./data/extracted_resume.json"
+
+if not os.path.exists(output_file):
+    if uploaded_files:
+        extracted_data = []
+
+        for uploaded_file in uploaded_files:
+            with open(uploaded_file.name, mode='wb') as w:
+                w.write(uploaded_file.getvalue())
+
+            if uploaded_file.type == "application/pdf":
+                loader = PyPDFLoader(uploaded_file.name)
+                pages = loader.load_and_split()
+
+            # Clean up (delete) the file after processing
+            if os.path.exists(uploaded_file.name):
+                os.remove(uploaded_file.name)
+                print(f"File {uploaded_file.name} has bee deleted")
+
+            response = extraction_chain.invoke({"input": pages[0]})
+
+            # print(response)
+
+            # Append the extracted information to a JSON file
+            output_file = "data/extracted_resume.json"
+
+            # Check if the JSON file exists and load its content if it does
+            try:
+                with open(output_file, 'r') as file:
+                    existing_data = json.load(file)
+            except FileNotFoundError:
+                existing_data = []
+
+            # Append the new data to the existing content
+            existing_data.append(response)
+
+            # Write the updated content back to the JSON file
+            with open(output_file, 'w') as file:
+                json.dump(existing_data, file, indent=4)
+
+            print(f"Resume data appended to {output_file}")
+
+
+# Check if the output file exists
 if os.path.exists(output_file):
+    # Create a form
     with st.form("form"):
-        question = st.text_input(
-            "Input your question about the documents")
-        prompt = ChatPromptTemplate.from_messages([
-            ("system", "Answer the question based on following json context:"),
-            ("human", "Question: {question}\nJSON Context: {context}")
-        ])
+        # Input for the user's question
+        question = st.text_input("Input your question about the documents")
 
-        data = json.loads(Path(output_file).read_text())
+        # Submit button
+        submitted = st.form_submit_button("Submit")
 
-        print(data)
+        # Only proceed if the form is submitted
+        if submitted:
+            # Load the JSON data from the output file
+            data = json.loads(Path(output_file).read_text())
+            print(data)
 
-        chain = prompt | model
-        result = chain.invoke(
-            {"question": question, "context": data})
-        st.form_submit_button("Submit")
+            # Create the prompt using the ChatPromptTemplate
+            prompt = ChatPromptTemplate.from_messages([
+                ("system", "Answer the question based on the following context:"),
+                ("human", "Question: {question}\nJSON Context: {context}")
+            ])
 
-        st.write(result.content)
+            # Chain the prompt with the model
+            chain = prompt | model
+
+            # Invoke the chain with the question and context
+            result = chain.invoke({"question": question, "context": data})
+
+            # Display the result
+            st.write(result.content)
