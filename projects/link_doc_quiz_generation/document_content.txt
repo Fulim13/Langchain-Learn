@@ -1,0 +1,242 @@
+```python
+import math
+
+# Variable name - reference(pointer) to the value that store in memory
+# lowercase and seperated with _
+# Eg
+# String
+student_name = "Wong Fu Lim"  # can used "double quote" or 'single quote' or """ for long stirng or commet """
+# Number
+money = 1000  # Integer
+rating = 4.99  # Floating Point Number
+# Boolean
+is_running = True
+is_walking = False
+
+# Espression - a thing can become a value
+# 2 + 2
+# variable_name
+# 2 > 1 (Boolean Value True)
+
+# String
+programming_language = "Python Programming"
+print(len(programming_language))  # 18
+print(programming_language[0])  # P
+print(programming_language[-1])  # g
+print(programming_language[0:3])  # Pyt
+print(programming_language[0:])  # Python Programming
+print(programming_language[:3])  # Pyt
+
+# Escape Sequences
+# // = /
+# /" = "
+# /' = /'
+# /n = newline
+my_name = "Wong\n \"Fu\' L\\im"
+print(my_name)  # Wong\n "Fu' L\im
+
+# Formatted String (> version Python 3.6)
+first_name = "Fu Lim"
+last_name = "Wong"
+full_name = first_name + " " + last_name
+print(full_name)  # Fu Lim Wong
+full_name_f = f"{first_name} {last_name}"
+print(full_name_f)  # Fu Lim Wong
+# in f , we can put expression
+expression_f = f"{2+2} {2>1} {len(full_name)}"  # 4 True 11
+print(expression_f)
+
+# String Method
+# everything in python is object , string is an object , so an object can call the method which means string can call method
+course = "python Course"
+# below method will not affect the original string (will return a new uppercase value so can store in variable)
+print(course.upper())  # PYTHON COURSE
+print(course.lower())  # python course
+print(course.title())  # Python Course
+print(course.find("hon"))  # return the first letter index it find which is 3
+# Case Sensitive
+print(course.find("Hon"))  # cant find return -1
+print(course.replace("o", "k"))  # pythkn Ckurse
+# return Boolean
+print("pyt" in course)  # True
+print("swift" not in course)  # True
+print(course)  # python Course
+course_space = "      Python     "
+print(course_space.strip())  # strip start space and end space
+# Python
+print(course_space.lstrip())  # left strip
+# Python[][][][][]
+print(course_space.rstrip())  # right strip
+# [][][][][][]Python
+print(course_space)  # [][][][][][]Python[][][][][]
+
+# Number
+x = 1  # Integer
+x = 1.1  # Floating Point Number
+x = 1 + 2j  # complex number (i is imaginary number )
+# Addition
+print(10 + 3)  # 13
+# Subtration
+print(10 - 3)  # 7
+# Multiplcation
+print(10 * 3)  # 30
+# Division - return floating
+print(10 / 3)  # 3.3333333333333335
+# Division Integer - return integer
+print(10 // 3)  # 3
+# Modulus
+print(10 % 3)  # remaider 1
+print(10**3)  # 1000
+x = 10
+x = x + 3  # 13
+x += 3  # 16
+print(x)  # 16
+print(round(2.9))  # 3
+print(abs(-2.9))  # 2.9
+
+# math modules (modules is a seperated file )
+print(math.ceil(2.2))  # 3
+print(math.floor(2.2))  # 2
+# REFERENCE
+# https://docs.python.org/3/library/math.html
+
+# Type Conversion
+# x = input("x: ")  # this will become string
+# print(x)  # "5"
+# print(type(x))  # str
+# y = x + 1  # "1" + 1
+# # Traceback (most recent call last):
+# #   File "C:\Users\ASUS\Desktop\Python\app.py", line 132, in <module>
+# #     y = x + 1
+# # TypeError: can only concatenate str (not "int") to str
+# y = int(x) + 1
+# print(f"x: {x}, y: {y}")  # x: 5 y: 6
+# Convert
+# int(x)
+# float(x)
+# bool(x)
+# str(x)
+# Falsy
+# ""
+# 0
+# None
+# everythong else will be true
+# eg
+print(bool(None))  # False
+print(bool("Hi"))  # True
+```
+```python
+# Comparison Operator
+10 > 3 # True
+10 >= 3 # True
+10 < 20 # True
+10 <= 20 # True
+10 == 10 # True
+10 == "10" # False
+10 != "10" # True
+"bag" > "apple" # True (b > a in ascii)
+"bag" > "Bag" # False (B > b in ascii)
+ord("b")  # 98
+ord("B")  # 66
+
+# Conditional Statement
+temperature = 35
+if temperature > 30: 
+    print("It is warm") 
+    print("Drink water")
+elif temperature > 20: 
+    print("It is nice")
+else: 
+    print("It is cold")
+print("Done")
+
+# Tenary
+age = 22
+if age >= 18: 
+    message = "Eligible"
+else: 
+    message = "Not eligible"
+print(message)  # Eligible
+message2 = "Eligible" if age >= 18 else "Not eligible"
+print(message2)  # Eligible
+
+# Logical operators
+# and - both need to be true
+high_income = False
+good_credit = True
+if high_income and good_credit: 
+    print("Eligible")
+else: 
+    print("Not eligible")
+
+# or - one of it true then true
+# not (convert True to False and vice versa)
+student = False
+if not student: 
+    print("Not Student")
+else: 
+    print("Student")
+
+if (high_income or good_credit) and not student: 
+    print("Eligible")
+else: 
+    print("Not eligible")
+
+# Short circuit
+# when it is and operator , when it find one False, the entire expression is False
+# when is is or operator , when it find one True, the entire expression is True
+
+# Chainning Comparison Operators
+# age should be between 18 and 65
+# 18 <= age <65
+if age >= 18 and age < 65: 
+    print("Young guys")
+if 18 <= age < 65: 
+    print("Young guys")
+
+# For Loop
+for number in range(3): 
+    print("Attempt", number, (number+1) * ".")
+for number in range(1, 10, 2): 
+    print("Attempt", number, number * ".")
+
+# For Else
+sucessful = False
+for number in range(3): 
+    print("Attempt", number+1) 
+    if sucessful: 
+        print("Successfull") 
+        break
+else: 
+    print("Attepted 3 times and  falied")
+
+# Nested
+for x in range(5): 
+    for y in range(3): 
+        print(f"({x},{y})")
+
+# Iterables
+print(type(5))  # <class 'int'>
+print(type(range(5)))  # <class 'range'>
+for x in "Python": 
+    print(x)
+for x in [1, 2, 3, 4]: 
+    print(x)
+
+# While Loops
+number = 100
+while number > 0: 
+    print(number) 
+    number //= 2
+command = ""
+while command.lower() != "quit": 
+    command = input(">")
+    print("ECHO", command)
+
+# Infinite Loops
+while True: 
+    command = input(">")
+    print("ECHO", command) 
+    if command.lower() != "quit": 
+        break
+```
