@@ -1,0 +1,9 @@
+User: My name is James, I'm a computer programmer and I like to play cosy games.
+Assistant: Nice to meet you, James! It's great to hear that you enjoy playing cosy games. Is there a specific cosy game that you're currently playing or one that you really enjoy?
+User: What is my name and my profession?
+Assistant: Your name is James, and you mentioned that you are a computer programmer. It's nice to know more about you! Is there a particular aspect of computer programming that you find most interesting or enjoy working on?
+User: Get information about Pikachu
+Assistant: Pikachu is a popular Pokémon! It has a height of 4 and a weight of 60. Is there anything specific you would like to know about Pikachu or any other Pokémon?
+User: Get information about Charmander
+Assistant: Charmander is another iconic Pokémon! It has a height of 6 and a weight of 85. If you have any more Pokémon you'd like to learn about or any other questions, feel free to ask!
+User: I want a comprehensive summary of our conversation! Please can you save it?

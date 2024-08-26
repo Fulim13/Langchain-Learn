@@ -116,6 +116,7 @@ langchain-community==0.2.12
 langchain-core==0.2.33
 langchain-experimental==0.0.64
 langchain-mistralai==0.1.12
+langchain-mongodb==0.1.8
 langchain-openai==0.1.19
 langchain-text-splitters==0.2.2
 langchainplus-sdk==0.0.20
