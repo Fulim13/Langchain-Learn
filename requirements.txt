@@ -49,6 +49,7 @@ distro==1.9.0
 dnspython==2.6.1
 docarray==0.40.0
 docx2txt==0.8
+duckduckgo_search==6.2.11
 editdistance==0.8.1
 effdet==0.4.1
 email_validator==2.2.0
@@ -215,6 +216,7 @@ portalocker==2.10.1
 posthog==3.5.0
 pox==0.3.4
 ppft==1.7.6.8
+primp==0.6.1
 prompt_toolkit==3.0.47
 proto-plus==1.24.0
 protobuf==5.27.3
